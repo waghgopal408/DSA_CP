@@ -5,7 +5,9 @@ public:
         int n = queries.size(), m = nums.size();
         vector<int> ans(n,-1);
         unordered_map<int, vector<int>> mp;
+        
 
+        //store index of each element in nums
         for(int i = 0;i<m;i++){
             mp[nums[i]].push_back(i);
         }
@@ -19,7 +21,8 @@ public:
              
             auto &arr = mp[val];
             int low = 0, high = arr.size() - 1, sz = high+1;
-
+            
+            // binary search to find required index and then minimum distance will either next or previous index, handle edge element properly
             while(low <= high){
                 int mid = low + (high - low)/2;
                 if(arr[mid] == idx){
@@ -49,6 +52,9 @@ public:
         return ans;
     }
 };
+
+
+//brute force
 // vector<int> ans(n,-1);
         // for(int i=0;i<n;i++){
         //     int idx = queries[i];
